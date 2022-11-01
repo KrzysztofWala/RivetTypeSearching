@@ -2,18 +2,27 @@ import pandas as pd
 import openpyxl
 import xlsxwriter
 
-df = pd.DataFrame({'name': ['Raphael', 'Donatello']})
-df.to_csv('out.csv', index=False)
-# df.to_csv('your.csv', index=False)
+def ImportParam():
+    # Reading excel data file
+    df_excel = pd.read_excel('Data.xlsx')
+
+    # Import information about spots
+    SpotsFileName = df_excel.columns[0]
+    df_s_param=df_excel[SpotsFileName].values.tolist()
+
+    # Import information about material
+    MaterialFileName = df_excel.columns[1]
+    df_m_param = df_excel[MaterialFileName].values.tolist()
+
+    # Openig excel files
+    df_m = pd.read_excel(MaterialFileName)
+    df_s = pd.read_excel(SpotsFileName)
+
+    # Extracting the necessary data, described in Data.xlsx from data frame
+    dfm = (df_m[df_m_param])
+    dfs = (df_s[df_s_param])
+
+    return (dfs, dfm)
 
 
-df_csv = pd.read_csv('out.csv')
-# print(df_csv)
-namef = df_csv.columns[0]
-print('file name:', namef)
-material = df_csv.iloc[[0,1]]
-print('kolumns: \n', material)
 
-# values.tolist()
-
-print(df_csv[namef].values.tolist())
