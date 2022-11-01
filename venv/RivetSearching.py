@@ -1,6 +1,12 @@
 import pandas as pd
 import openpyxl
 import xlsxwriter
+# from RivetsFunctions import *
+import RivetsFunctions as rf
+
+
+
+rf.ImportParamCSV()
 
 # Openig excel files
 material_file = 'Material.xlsx'
